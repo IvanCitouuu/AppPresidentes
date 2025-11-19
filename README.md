@@ -5,7 +5,6 @@ El proyecto busca ser educativo, institucional y visualmente elegante, con anima
 - Línea de tiempo interactiva con imágenes y datos de presidentes
 - Navegación moderna
 - Animaciones suaves y efectos visuales
-- Soporte para internacionalización (i18n)
 ---
 📦 Instalación
 Clonar el repositorio
@@ -14,4 +13,3 @@ git clone https://github.com/tuusuario/AppPresidentes.git
 🛠️ Configuración recomendada
 - Usar Embedded JDK (JetBrains Runtime 21) en Android Studio
 - Android Studio Giraffe o superior
-- Gradle 8.x
