@@ -1,5 +1,5 @@
 Aplicación de Android que muestra la línea de tiempo de los Presidentes de Chile.  
-El proyecto busca ser educativo, institucional y visualmente elegante, con animaciones y estilo minimalista.
+El proyecto busca ser educativo, institucional y visualmente elegante, con animaciones y estilos.
 ---
 🚀 Características
 - Línea de tiempo interactiva con imágenes y datos de presidentes
