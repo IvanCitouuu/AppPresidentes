@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Presidente</string>
+    <string name="milestones_title">Hitos importantes:</string>
+    <string name="milestone_item">• %1$s</string>
 </resources>

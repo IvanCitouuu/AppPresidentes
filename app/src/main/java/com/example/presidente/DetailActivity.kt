@@ -8,9 +8,8 @@ import com.example.presidente.models.President
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val president = intent.getSerializableExtra("president") as President
-
+        @Suppress("DEPRECATION")
+        val president = intent.getSerializableExtra("president") as? President
         val scrollView = ScrollView(this)
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -18,28 +17,28 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val photo = ImageView(this).apply {
-            setImageResource(president.photoResId)
+            setImageResource(president?.photoResId ?: 0)
             layoutParams = LinearLayout.LayoutParams(400, 400)
         }
 
         val name = TextView(this).apply {
-            text = president.name
+            text = president?.name ?: ""
             textSize = 24f
             setTypeface(null, android.graphics.Typeface.BOLD)
         }
 
         val term = TextView(this).apply {
-            text = president.term
+            text = president?.term ?: ""
             textSize = 18f
         }
 
         val bio = TextView(this).apply {
-            text = president.bio
+            text = president?.bio ?: ""
             textSize = 16f
         }
 
         val milestonesTitle = TextView(this).apply {
-            text = "Hitos importantes:"
+            text = getString(R.string.milestones_title)
             textSize = 18f
             setTypeface(null, android.graphics.Typeface.BOLD)
             setPadding(0, 24, 0, 8)
@@ -49,9 +48,9 @@ class DetailActivity : AppCompatActivity() {
             orientation = LinearLayout.VERTICAL
         }
 
-        president.milestones.forEach {
+        president?.milestones?.forEach {
             val item = TextView(this).apply {
-                text = "• $it"
+                text = getString(R.string.milestone_item, it)
                 textSize = 16f
             }
             milestonesLayout.addView(item)
@@ -65,7 +64,6 @@ class DetailActivity : AppCompatActivity() {
             addView(milestonesTitle)
             addView(milestonesLayout)
         }
-
         scrollView.addView(layout)
         setContentView(scrollView)
     }

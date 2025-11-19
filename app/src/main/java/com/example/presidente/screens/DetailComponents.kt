@@ -18,11 +18,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.unit.sp
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.draw.clip
 
 @Composable
 fun BioSection(bio: String) {
     var expanded by remember { mutableStateOf(false) }
-
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "Biografía",
@@ -30,16 +32,13 @@ fun BioSection(bio: String) {
             color = Color(0xFF000000)
         )
         Spacer(modifier = Modifier.height(4.dp))
-
         Text(
             text = if (expanded) bio else bio.take(200) + "...",
             style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFF3C2F23),
+            color = Color(0xFF000000),
             modifier = Modifier.animateContentSize()
         )
-
         Spacer(modifier = Modifier.height(4.dp))
-
         TextButton(
             onClick = { expanded = !expanded },
             modifier = Modifier.align(Alignment.End)
@@ -62,11 +61,9 @@ fun MilestoneSection(milestones: List<String>) {
             color = Color(0xFF000000)
         )
         Spacer(modifier = Modifier.height(8.dp))
-
         milestones.forEachIndexed { index, milestone ->
             val delayMillis = index * 100
             val visible by remember { mutableStateOf(true) }
-
             AnimatedVisibility(
                 visible = visible,
                 enter = fadeIn(animationSpec = tween(delayMillis)) + slideInVertically(initialOffsetY = { it / 2 }),
@@ -74,7 +71,6 @@ fun MilestoneSection(milestones: List<String>) {
             ) {
                 MilestoneCard(text = milestone)
             }
-
             Spacer(modifier = Modifier.height(4.dp))
         }
     }
@@ -87,13 +83,13 @@ fun MilestoneCard(text: String) {
             .fillMaxWidth()
             .animateContentSize(),
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFF5ECD9))
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFF8F3CE))
     ) {
         Text(
             text = "• $text",
             modifier = Modifier.padding(12.dp),
             style = MaterialTheme.typography.bodyMedium.copy(fontSize = 16.sp),
-            color = Color(0xFF3C2F23)
+            color = Color(0xFF000000)
         )
     }
 }
@@ -101,7 +97,6 @@ fun MilestoneCard(text: String) {
 @Composable
 fun BackButton(navController: NavHostController) {
     var visible by remember { mutableStateOf(true) }
-
     Box(modifier = Modifier.fillMaxWidth()) {
         AnimatedVisibility(
             visible = visible,
@@ -111,7 +106,9 @@ fun BackButton(navController: NavHostController) {
             IconButton(
                 onClick = { navController.popBackStack() },
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(top = 50.dp, start = 6.dp)
+                    .clip(CircleShape)
+                    .background(Color(0x11121212))
                     .align(Alignment.TopStart)
             ) {
                 Icon(

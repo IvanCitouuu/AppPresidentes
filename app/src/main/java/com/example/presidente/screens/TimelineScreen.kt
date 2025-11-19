@@ -41,38 +41,39 @@ fun TimelineItem(
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(modifier = Modifier.weight(0.6f)) {
-                    Column(
-                        modifier = Modifier
-                            .clickable { onClick() }
-                            .widthIn(max = 300.dp),
-                        horizontalAlignment = Alignment.End
-                    ) {
-                        Text(
-                            text = president.name,
-                            style = MaterialTheme.typography.titleMedium,
-                            textAlign = TextAlign.End,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Text(
-                            text = president.term,
-                            style = MaterialTheme.typography.bodyMedium,
-                            textAlign = TextAlign.End
-                        )
-                    }
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable { onClick() }
+                        .padding(end = 6.dp),
+                    horizontalAlignment = Alignment.End
+                ) {
+                    Text(
+                        text = president.name,
+                        style = MaterialTheme.typography.titleMedium,
+                        textAlign = TextAlign.End,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = president.term,
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.End
+                    )
                 }
-
-                Spacer(modifier = Modifier.width(2.dp))
-
-                Box(modifier = Modifier.width(72.dp)) {
+                Box(
+                    modifier = Modifier
+                        .width(72.dp)
+                        .height(72.dp),
+                    contentAlignment = Alignment.Center
+                ) {
                     Image(
                         painter = painterResource(id = president.photoResId),
                         contentDescription = president.name,
                         modifier = Modifier
                             .size(72.dp)
                             .clip(CircleShape)
-                            .border(2.dp, Color.White, CircleShape)
+                            .border(2.dp, Color(0xFFF8F3CE), CircleShape)
                             .clickable { onClick() }
                     )
                 }
@@ -80,39 +81,54 @@ fun TimelineItem(
         } else {
             Spacer(modifier = Modifier.weight(1f))
         }
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Box(modifier = Modifier.height(5.dp).background(Color.White))
-            Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(Color.White))
+            Box(modifier = Modifier.height(5.dp).background(Color(0xFFF8F3CE)))
+            Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(Color(0xFFF8F3CE)))
         }
-
         if (!isLeftAligned) {
             Row(
                 modifier = Modifier.weight(1f),
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
-                    painter = painterResource(id = president.photoResId),
-                    contentDescription = president.name,
+                Box(
                     modifier = Modifier
-                        .size(72.dp)
-                        .clip(CircleShape)
-                        .border(2.dp, Color.White, CircleShape)
-                        .clickable { onClick() }
-                )
-
-                Spacer(modifier = Modifier.width(2.dp))
-
+                        .width(72.dp)
+                        .height(72.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = president.photoResId),
+                        contentDescription = president.name,
+                        modifier = Modifier
+                            .size(72.dp)
+                            .clip(CircleShape)
+                            .border(2.dp, Color(0xFFF8F3CE), CircleShape)
+                            .clickable { onClick() }
+                    )
+                }
                 Column(
-                    modifier = Modifier.clickable { onClick() },
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable { onClick() }
+                        .padding(start = 6.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = president.name, style = MaterialTheme.typography.titleMedium)
-                    Text(text = president.term, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = president.name,
+                        style = MaterialTheme.typography.titleMedium,
+                        textAlign = TextAlign.Start,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = president.term,
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Start
+                    )
                 }
             }
         } else {
@@ -124,14 +140,12 @@ fun TimelineItem(
 @Composable
 fun TimelineScreen(presidents: List<President>, navController: NavHostController) {
     val antiqueBackground = Color(0xFFDDDAD0)
-
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(antiqueBackground)
     ) {
         TimelineHeader()
-
         Box(modifier = Modifier.fillMaxSize()) {
             Box(
                 modifier = Modifier
@@ -140,7 +154,6 @@ fun TimelineScreen(presidents: List<President>, navController: NavHostController
                     .background(Color.Black)
                     .align(Alignment.Center)
             )
-
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -170,21 +183,23 @@ fun TimelineHeader() {
         modifier = Modifier
             .fillMaxWidth()
             .background(Color(0xFF7A7A73))
-            .padding(vertical = 10.dp),
+            .padding(vertical = 2.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             painter = painterResource(id = R.drawable.escudo_chile),
             contentDescription = "Escudo de Chile",
-            modifier = Modifier.size(72.dp)
+            modifier = Modifier
+                .size(90.dp)
+                .padding(top = 24.dp) //
         )
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(1.dp))
         Text(
             text = "Línea de Tiempo \nPresidentes de Chile",
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
-            color = Color(0xFFFFFFFF)
+            color = Color(0xFFF8F3CE)
         )
     }
 }
