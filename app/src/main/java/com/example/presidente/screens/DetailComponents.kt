@@ -32,12 +32,19 @@ fun BioSection(bio: String) {
             color = Color(0xFF000000)
         )
         Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = if (expanded) bio else bio.take(200) + "...",
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFF000000),
-            modifier = Modifier.animateContentSize()
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFFEDEBD7), shape = RoundedCornerShape(12.dp))
+                .padding(12.dp)
+                .animateContentSize()
+        ) {
+            Text(
+                text = if (expanded) bio else bio.take(200) + "...",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color(0xFF000000)
+            )
+        }
         Spacer(modifier = Modifier.height(4.dp))
         TextButton(
             onClick = { expanded = !expanded },
@@ -51,6 +58,7 @@ fun BioSection(bio: String) {
         }
     }
 }
+
 
 @Composable
 fun MilestoneSection(milestones: List<String>) {

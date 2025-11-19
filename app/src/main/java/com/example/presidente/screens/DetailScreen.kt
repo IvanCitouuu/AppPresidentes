@@ -98,7 +98,7 @@ fun AnimatedBorderPresidentImage(photoResId: Int, name: String) {
             drawArc(
                 color = Color(0xFFF8F3CE),
                 startAngle = angle,
-                sweepAngle = 90f,
+                sweepAngle = 150f,
                 useCenter = false,
                 style = Stroke(width = 6.dp.toPx())
             )
